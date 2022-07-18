@@ -17,8 +17,8 @@ public class Connect {
         return conn;
     }
 
-    public int getTrainersCount() {
-        String SQL = "SELECT fio FROM \"task_DDL\".coachs";
+    public void getStudentsCount() {
+        String SQL = "SELECT count(*) FROM \"it-academy\".students where students.fio like '%а%'";
         int count = 0;
 
         try (Connection conn = connection();
@@ -29,7 +29,22 @@ public class Connect {
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         }
-        return count;
+        System.out.println("Студентов с буквой <<а>> " + count + " штук");
+    }
+
+    public void allGroups() {
+        String SQL = "SELECT id, name FROM \"it-academy\".groupss ";
+
+        try (Connection conn = connection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(SQL)) {
+            while (rs.next()) {
+                System.out.print(rs.getInt("id") + " ");
+                System.out.println(rs.getString("name"));
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 }
 

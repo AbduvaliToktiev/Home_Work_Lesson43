@@ -1,6 +1,8 @@
 public class Main {
     public static void main(String[] args) {
         Connect connect = new Connect();
-        connect.connection();
+       // connect.connection();
+        connect.getStudentsCount();
+        connect.allGroups();
     }
 }
